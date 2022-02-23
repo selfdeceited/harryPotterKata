@@ -1,5 +1,5 @@
 import { Discounter } from './Discounter'
-import { Check, Discount, Price, PricedOrder, RawOrder } from './models'
+import { Check, Discount, Price, PricedOrder, RawOrder } from './types'
 
 export class CashRegister {
 	constructor(private discounts: Discount[], private priceForOneBook = 8) {}

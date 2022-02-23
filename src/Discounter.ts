@@ -1,4 +1,4 @@
-import { Discount, Id, PricedOrder } from './models'
+import { Discount, Id, PricedOrder } from './types'
 
 export class Discounter {
 	constructor(private discount: Discount) {}

@@ -1,4 +1,4 @@
-import { Discount } from "../models";
+import { Discount } from "../types";
 
 
 export const discounts: Discount[] = [
