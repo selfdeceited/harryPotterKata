@@ -1,4 +1,11 @@
-[Source](https://github.com/unicornity/katas/tree/master/list/HarryPotter)
+[Origin](https://github.com/unicornity/katas/tree/master/list/HarryPotter)
+
+## How to run
+```
+    cd src
+    yarn
+    yarn test
+```
 
 ## Harry Potter Kata
 
