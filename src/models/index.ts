@@ -27,7 +27,7 @@ export type DiscountRate = 0 | 0.05 | 0.1 | 0.2 | 0.25
 export type Priority = 1 | 2 | 3 | 4
 
 export type Discount = {
-	name: string
+	description: string
 	forBooksCount: number
 	discountRate: DiscountRate
 	priority: Priority
