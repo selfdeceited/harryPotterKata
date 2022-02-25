@@ -1,5 +1,6 @@
-import { Discounter } from './Discounter'
 import { Check, Discount, Price, PricedOrder, RawOrder } from './types'
+
+import { Discounter } from './Discounter'
 
 export class CashRegister {
 	constructor(private discounts: Discount[], private priceForOneBook = 8) {}
@@ -11,18 +12,20 @@ export class CashRegister {
 			.sort((a, b) => a.priority - b.priority)
 			.forEach(discount => {
 				const discounter = new Discounter(discount)
-				while (true) {
-					const { applyAllowed, ids } = discounter.canApply(pricedOrder)
-					if (applyAllowed) {
-						pricedOrder = discounter.apply(pricedOrder, ids!)
-					} else {
-						break
-					}
-				}
+				pricedOrder = this.applyDiscount(pricedOrder, discounter)
 			})
 
 		const finalPrice = this.calculatePriceForOrder(pricedOrder)
 		return { finalPrice }
+	}
+
+	private applyDiscount(pricedOrder: PricedOrder, discounter: Discounter): PricedOrder {
+		const { applyAllowed, ids } = discounter.canApply(pricedOrder)
+		if (!applyAllowed) {
+			return pricedOrder
+		}
+		pricedOrder = discounter.apply(pricedOrder, ids!)
+		return this.applyDiscount(pricedOrder, discounter)
 	}
 
 	private preparePricedOrder(order: RawOrder): PricedOrder {
